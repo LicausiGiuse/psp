@@ -1,22 +1,23 @@
 package EjerciciosJava;
 
-import java.util.Scanner;
-
 public class Sumador {
 
+    public static int sumar(int n1, int n2) {
+        int suma = 0;
 
+        for (int i = n1; i <= n2; i++) {
+            suma += i;
+        }
 
-         public static int sumar(int n1, int n2){
-             return n1 + n2;
-         }
-    public static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args){
+        return suma;
+    }
 
-             System.out.println("numero 1: ");
-             int n1 = sc.nextInt();
-             System.out.println("numero 2: ");
-             int n2 = sc.nextInt();
-        System.out.println(sumar(n1,n2));
+    public static void main(String[] args) {
+        int n1 = Integer.parseInt(args[0]);
+        int n2 = Integer.parseInt(args[1]);
 
+        int resultado = sumar(n1, n2);
+
+        System.out.println(resultado);
     }
 }
