@@ -11,6 +11,7 @@ public class Lanzador2 {
            pb.directory(new File("./out/production/UT2"));
            pb.redirectError(new File("errores.txt"));
            pb.redirectOutput(new File(fichResultado));
+           pb.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -23,5 +24,6 @@ public class Lanzador2 {
         l2.lanzarSumador2(1,5,"result1.txt");
         l2.lanzarSumador2(6,10,"result2.txt");
         System.out.println("OK");
+
     }
 }
