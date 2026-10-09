@@ -1,0 +1,59 @@
+@startuml
+
+' Opciones de optimización recomendadas por IntelliJ para mejorar la velocidad de carga
+'idea.partialRender
+'idea.disableSyntaxCheck
+
+interface IFileDao {
+    +leer(String nombreArchivo) : void
+    +escribir(String nombreArchivo, String text) : void
+}
+
+class FileDaoBasic {
+    +leer(String filename) : void
+    +escribir(String filename, String text) : void
+}
+
+class FileDaoAdvance {
+    +leer(String filename) : void
+    +escribir(String filename, String text) : void
+}
+
+class FileDaoBinary {
+    +leer(String filename) : void
+    +escribir(String filename, String output) : void
+}
+
+class FileDaoBinaryAdvance {
+    +leer(String filename) : void
+    +escribir(String filename, String text) : void
+}
+
+class FileFactory {
+    +getDao(DaoType tipo) : IFileDao
+}
+
+enum DaoType {
+    BASIC
+    ADVANCE
+    BIN
+    BIN_ADV
+}
+
+abstract class TestFileFactory {
+    {static} +fileFactory : FileFactory
+    {static} +main(String[] args) : void
+}
+
+' Relaciones de implementación claras para el motor gráfico
+IFileDao <|.. FileDaoBasic
+IFileDao <|.. FileDaoAdvance
+IFileDao <|.. FileDaoBinary
+IFileDao <|.. FileDaoBinaryAdvance
+
+' Relaciones de uso y estructura de la factoría
+FileFactory ..> IFileDao : <<create>>
+FileFactory +-- DaoType
+TestFileFactory --> FileFactory
+
+@enduml
