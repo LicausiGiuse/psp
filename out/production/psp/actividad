@@ -1,0 +1,43 @@
+
+#include <stdio.h>
+#include <string.h> 
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+
+int main(){
+
+int pipe[2];
+pipe(pipefd);
+
+return 0;
+
+pid_t proceso;
+
+proceso = fork();
+
+if (proceso == 0){
+//hijo
+
+close(pipefd[1]);
+char buffer[100];
+read(pipefd[0],buffer,sizeof(buffer));
+
+ printf("El HIJO recibe algo del pipe: %s\n", buffer);
+
+    close(pipefd[0]);
+
+}else {
+close(pipefd[0]);
+char mensaje[] = "buenos dias hijo";
+ printf("El PADRE envía algo al pipe.\n");
+
+write(pipefd[1], mensaje, strlen(mensaje)+1);
+close(pipefd[1]);
+// padre
+
+
+}
+return 0;
+}
